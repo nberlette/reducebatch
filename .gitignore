@@ -163,3 +163,5 @@ wrangler.*.toml
 .stmcube
 .stmcufinder
 
+dist
+dist/**/*

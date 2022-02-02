@@ -1,10 +1,9 @@
-import reduceBatch from 'reducebatch';
-import reduceBatchSync from 'reducebatch/sync';
+import { reduceBatch, reduceBatchSync } from "../dist/index.mjs";
 
 const arraySize = 100;
 const batchSize = 10;
 const perSecond = 5;
-const largeArray = Array(arraySize).map((v,i) => i);
+const largeArray = Array.from(Array(arraySize), (v, i) => i);
 
 const syncTest = () => {
   console.log('reduceBatchSync(): testing synchronous function')  
@@ -37,17 +36,12 @@ let startTime = Date.now();
 
 setTimeout(() => {
   syncTest();
-
   setTimeout(async () => {
-
     await asyncTest().then(() => {
       console.log(
         'Elapsed time, sec:',
         ((Date.now() - startTime) / 1000).toFixed(3)
       )
     });
-
   }, 10);
-
 }, 10);
-

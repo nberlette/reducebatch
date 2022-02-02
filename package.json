@@ -1,6 +1,6 @@
 {
   "name": "reducebatch",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "author": {
     "name": "Nicholas Berlette",
@@ -18,7 +18,7 @@
     "access": "public",
     "tag": "latest"
   },
-  "description": "Perform async/sync reductions of arrays in batches. Supports throttling. ESM, CJS, and DTS.",
+  "description": "Perform async/sync reductions of arrays in batches. Supports throttling.",
   "keywords": [
     "reduce",
     "batches",
@@ -29,24 +29,20 @@
     "await",
     "sync"
   ],
-  "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "esnext": "./dist/index.mjs",
   "unpkg": "./dist/index.umd.js",
   "types": "./index.d.ts",
   "typings": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "unpkg": "./dist/index.umd.js",
-      "default": "./dist/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./*": {
-      "import": "./dist/*/index.js",
-      "require": "./dist/*/index.cjs",
-      "unpkg": "./dist/*/index.umd.js",
-      "default": "./dist/*/index.js"
+      "import": "./dist/*/index.mjs",
+      "require": "./dist/*/index.js"
     },
     "./package.json": "./package.json",
     "./index.d.ts": "./index.d.ts"
@@ -64,6 +60,11 @@
   },
   "scripts": {
     "build": "bundt --minify",
+    "pretest": "run-s lint build",
+    "prepublishOnly": "run-s lint:fix build version",
+    "version": "npm version --minor",
+    "lint": "prettier --check",
+    "lint:fix": "prettier --write",
     "test": "node -r esm test"
   },
   "prettier": {
@@ -89,6 +90,7 @@
   "devDependencies": {
     "bundt": "1.1.5",
     "esm": "3.2.25",
+    "npm-run-all": "4.1.5",
     "prettier": "2.5.1"
   }
 }
