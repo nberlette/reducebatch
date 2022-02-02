@@ -1,0 +1,94 @@
+{
+  "name": "reducebatch",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "Nicholas Berlette",
+    "email": "nick@berlette.com",
+    "url": "https://github.com/nberlette"
+  },
+  "repository": "nberlette/reducebatch",
+  "homepage": "https://n.berlette.com/reducebatch",
+  "readme": "https://github.com/nberlette/reducebatch#readme",
+  "bugs": {
+    "url": "https://github.com/nberlette/reducebatch/issues",
+    "email": "bugs@berlette.com"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "Perform async/sync reductions of arrays in batches. Supports throttling. ESM, CJS, and DTS.",
+  "keywords": [
+    "reduce",
+    "batches",
+    "arrays",
+    "data",
+    "utilities",
+    "async",
+    "await",
+    "sync"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./index.d.ts",
+  "typings": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "unpkg": "./dist/index.umd.js",
+      "default": "./dist/index.cjs"
+    },
+    "./*": {
+      "import": "./dist/*/index.js",
+      "require": "./dist/*/index.cjs",
+      "unpkg": "./dist/*/index.umd.js",
+      "default": "./dist/*/index.js"
+    },
+    "./package.json": "./package.json",
+    "./index.d.ts": "./index.d.ts"
+  },
+  "files": [
+    "dist",
+    "sync",
+    "async",
+    "*.d.ts"
+  ],
+  "modes": {
+    "default": "./src/index.js",
+    "dist/sync": "./src/sync.js",
+    "dist/async": "./src/async.js"
+  },
+  "scripts": {
+    "build": "bundt --minify",
+    "test": "node -r esm test"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "bracketSameLine": true,
+    "bracketSpacing": true,
+    "embeddedLanguageFormatting": "auto",
+    "endOfLine": "lf",
+    "filepath": "{src,test}/**/*.{js,cjs,mjs}",
+    "htmlWhitespaceSensitivity": "css",
+    "pluginSearchDirs": [
+      "."
+    ],
+    "printWidth": 120,
+    "proseWrap": "preserve",
+    "quoteProps": "consistent",
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "devDependencies": {
+    "bundt": "1.1.5",
+    "esm": "3.2.25",
+    "prettier": "2.5.1"
+  }
+}

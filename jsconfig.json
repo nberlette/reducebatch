@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*.js"],
+      "reducebatch": ["./src/index.js"],
+      "reducebatch/*": ["./src/*.js"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "**/node_modules/**", 
+    "node_modules", 
+    "**/.git/**", 
+    ".git"
+  ]
+}
