@@ -63,8 +63,8 @@
     "pretest": "run-s lint build",
     "prepublishOnly": "run-s lint:fix build version",
     "version": "npm version --minor",
-    "lint": "prettier --check",
-    "lint:fix": "prettier --write",
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
     "test": "node -r esm test"
   },
   "prettier": {

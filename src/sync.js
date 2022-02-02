@@ -9,32 +9,24 @@
  * @param {number} [rateLimit] - (optional) thottling in ops/sec. `default = 0` (no limit)
  * @returns {*} accumulator
  */
-export function reduceBatchSync(
-  array,
-  reducerfn,
-  callback,
-  initialValue = 0,
-  batchSize = 100,
-  rateLimit = 0
-) {
+export function reduceBatchSync(array, reducerfn, callback, initialValue = 0, batchSize = 100, rateLimit = 0) {
   try {
-    let accumulator = initialValue
+    let accumulator = initialValue;
     let index = 0,
-      delay = 0 < rateLimit ? (1000 / parseInt(rateLimit)) : 0
+      delay = 0 < rateLimit ? 1000 / parseInt(rateLimit) : 0;
 
     const batch = () => {
       for (let i = index; i < index + batchSize && i < array.length; i++) {
-        accumulator = reducerfn(accumulator, array[i], i, array)
+        accumulator = reducerfn(accumulator, array[i], i, array);
       }
-      index += batchSize
-      if (index == array.length)
-        return callback(null, accumulator)
-      setTimeout(() => batch(), delay)
-    }
+      index += batchSize;
+      if (index == array.length) return callback(null, accumulator);
+      setTimeout(() => batch(), delay);
+    };
 
-    batch()
+    batch();
   } catch (err) {
-    return callback(err, null)
+    return callback(err, null);
   }
 }
 

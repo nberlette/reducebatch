@@ -1,4 +1,3 @@
-
 /**
  * Asynchronous (async/await) batch array reductions.
  *
@@ -11,31 +10,31 @@
  */
 export async function reduceBatch(
   array,
-  reducer = (acc, cur) => (acc + cur),
+  reducer = (acc, cur) => acc + cur,
   initialValue = 0,
   batchSize = 100,
-  rateLimit = 0,
+  rateLimit = 0
 ) {
   let accumulator = initialValue;
   let index = 0;
-  let delay = 0 < rateLimit ? (1000 / parseInt(rateLimit)) : 0;
-  async function batch () {
+  let delay = 0 < rateLimit ? 1000 / parseInt(rateLimit) : 0;
+  async function batch() {
     return new Promise((resolve, reject) => () => {
       try {
         for (let i = index; i < index + batchSize; i++) {
-          accumulator = reducer(accumulator, array[i], i, array)
+          accumulator = reducer(accumulator, array[i], i, array);
         }
       } catch (err) {
-        reject(err.message || err.toString())
+        reject(err.message || err.toString());
       }
 
       index += batchSize;
-      (index === array.length) && resolve(accumulator)
+      index === array.length && resolve(accumulator);
       setTimeout(() => resolve(batch()), delay);
     });
   }
 
-  return await batch()
+  return await batch();
 }
 
 export default reduceBatch;

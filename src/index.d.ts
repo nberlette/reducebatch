@@ -33,5 +33,5 @@ export function reduceBatchSync(
   callback: (err?: any | null, result?: any | null) => any,
   initialValue?: any,
   batchSize?: number,
-  rateLimit?: number,
+  rateLimit?: number
 ): any;
