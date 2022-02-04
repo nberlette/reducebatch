@@ -1,0 +1,43 @@
+image: nberlette/gitpod-enhanced:latest
+
+tasks:
+  - before: pnpm install
+    init: pnpm add -g vercel typescript tsm > /dev/null
+    command: pnpm lint --if-present
+
+ports:
+  - port: "3000-5000"
+    onOpen: notify
+
+gitConfig:
+  commit.gpgsign: "true"
+  tag.gpgsign: "true"
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addLabel: true
+    addBadge: true
+    addCheck: true
+
+vscode:
+  extensions:
+    - simonsiefke.prettier-vscode
+    - editorconfig.editorconfig
+    - github.copilot-nightly
+    - vsls-contrib.gistfs
+    - github.vscode-codeql
+    - cschleiden.vscode-github-actions
+    - eamodio.gitlens
+    - jock.svg
+    - redhat.vscode-yaml
+    - gamunu.vscode-yarn
+    - jacano.vscode-pnpm
+    - eg2.vscode-npm-script
+    - christian-kohler.npm-intellisense
+    - christian-kohler.path-intellisense
+    - davidanson.vscode-markdownlint
+    - darkriszty.markdown-table-prettify
